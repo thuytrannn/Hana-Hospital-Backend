@@ -21,26 +21,26 @@ module.exports = {
         type: Sequelize.STRING
       },
       address: {
-        type: Sequelize.STRING 
+        type: Sequelize.STRING
       },
       gender: {
         type: Sequelize.STRING
       },
       roleId: {
-        type: Sequelize.STRING 
+        type: Sequelize.STRING
       },
       phonenumber: {
-        type: Sequelize.STRING 
+        type: Sequelize.STRING
       },
       positionId: {
-        type: Sequelize.STRING 
+        type: Sequelize.STRING
       },
       image: {
-        type: Sequelize.STRING 
+        type: Sequelize.BLOB('long')
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE 
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
