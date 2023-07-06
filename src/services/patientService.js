@@ -46,16 +46,13 @@ let postBookAppointmentService = (data) => {
                 })
                 if (user && user[0]) {
                     console.log('user========================:', user)
-                    await db.Booking.findOrCreate({
-                        where: { patientId: user[0].id },
-                        defaults: {
-                            statusId: 'S1',
-                            doctorId: data.doctorId,
-                            patientId: user[0].id,
-                            date: data.date,
-                            timeType: data.timeType,
-                            token: token,
-                        }
+                    await db.Booking.Create({
+                        statusId: 'S1',
+                        doctorId: data.doctorId,
+                        patientId: user[0].id,
+                        date: data.date,
+                        timeType: data.timeType,
+                        token: token,
                     })
                 }
             }
