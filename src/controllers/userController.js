@@ -1,10 +1,10 @@
 import userService from '../services/userService'
 
-let handleLogin = async(req, res) => {
+let handleLogin = async (req, res) => {
     let email = req.body.email
     let password = req.body.password
 
-    if(!email || !password) {
+    if (!email || !password) {
         return res.status(500).json({
             errCode: 1,
             message: 'Missing inputs parameter!'
@@ -20,30 +20,33 @@ let handleLogin = async(req, res) => {
     })
 }
 
-let handleGetAllUsers = async(req, res) => {{
-    let id = req.query.id //all,id
-    if(!id) {
+let handleGetAllUsers = async (req, res) => {
+    {
+        let id = req.query.id //all,id
+        if (!id) {
+            return res.status(200).json({
+                errCode: 1,
+                errMessage: 'Missing required parameters!',
+                users: []
+            })
+        }
+        let users = await userService.getAllUsers(id)
         return res.status(200).json({
-            errCode: 1,
-            errMessage: 'Missing required parameters!',
-            users: []
+            errCode: 0,
+            errMessage: 'OK',
+            users,
         })
     }
-    let users = await userService.getAllUsers(id)
-    return res.status(200).json({
-        errCode: 0,
-        errMessage: 'OK',
-        users, 
-    })
-}}
+}
 
-let handleCreateNewUser = async(req, res) => {
+let handleCreateNewUser = async (req, res) => {
     let message = await userService.createNewUser(req.body)
+    console.log('===dataController===: ', req.body)
     return res.status(200).json(message)
 }
 
-let handleDeleteUser = async(req, res) => {
-    if(!req.body.id) {
+let handleDeleteUser = async (req, res) => {
+    if (!req.body.id) {
         return res.status(200).json({
             errCode: 1,
             errMessage: 'Missing required parameters!',
@@ -53,19 +56,19 @@ let handleDeleteUser = async(req, res) => {
     return res.status(200).json(message)
 }
 
-let handleEditUser = async(req, res) => {
+let handleEditUser = async (req, res) => {
     let data = req.body
     let message = await userService.updateUserData(data)
     return res.status(200).json(message)
 
 }
 
-let getAllCode = async(req,res) => {
+let getAllCode = async (req, res) => {
     try {
         let data = await userService.GetAllCodeService(req.query.type)
         return res.status(200).json(data)
     }
-    catch(e) {
+    catch (e) {
         console.log('Get all code error', e)
         return res.status(200).json({
             errCode: -1,

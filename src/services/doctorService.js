@@ -195,11 +195,10 @@ let bulkCreateScheduleService = (data) => {
                 let schedule = data.arrSchedule
                 if (schedule && schedule.length > 0) {
                     schedule = schedule.map(item => {
-                        item.maxNumber = MAX_NUMBER_SCHEDULE
+                        item.maxNumber = MAX_NUMBER_SCHEDULE ? MAX_NUMBER_SCHEDULE : 10
                         return item
                     })
                 }
-                console.log('schedule: ', schedule)
                 let existing = await db.Schedule.findAll({
                     where: { doctorId: data.doctorId, date: data.formatedDate },
                     attributes: ['doctorId', 'timeType', 'date', 'maxNumber'],
@@ -207,13 +206,12 @@ let bulkCreateScheduleService = (data) => {
                 })
                 //check trùng bản ghi
                 let toCreate = _.differenceWith(schedule, existing, (a, b) => {
-                    return a.doctorId === b.doctorId && +a.date === +b.date && a.timeType === b.timeType
+                    return a.doctorId === b.doctorId && +a.date == +b.date && a.timeType == b.timeType
                 })
                 if (toCreate && toCreate.length > 0) {
                     await db.Schedule.bulkCreate(toCreate)
 
                 }
-                console.log('toCreate:', toCreate)
                 resolve({
                     errCode: 0,
                     errMessage: 'OK'
