@@ -73,6 +73,8 @@ let getAllClinics = () => {
             let data = await db.Clinic.findAll()
             if (data && data.length > 0) {
                 data.map(item => {
+                    let array = []
+                    console.log('item:', item)
                     item.image = new Buffer(item.image, 'base64').toString('binary')
                     return item
                 })
