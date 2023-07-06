@@ -45,6 +45,7 @@ let postBookAppointmentService = (data) => {
                     errMessage: 'Save infor patient success.',
                 })
                 if (user && user[0]) {
+                    console.log('user========================:', user)
                     await db.Booking.findOrCreate({
                         where: { patientId: user[0].id },
                         defaults: {
