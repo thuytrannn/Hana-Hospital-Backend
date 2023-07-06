@@ -21,7 +21,6 @@ let postBookAppointmentService = (data) => {
                 })
             }
             else {
-                Simple
                 let token = uuidv4()
                 await emailService.sendEmailBooking({
                     receiverEmail: data.email,
