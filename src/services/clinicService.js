@@ -4,6 +4,7 @@ const db = require("../models")
 let createNewClinicService = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
+            console.log('data:', data)
             if (!data.name || !data.descriptionHTML
                 || !data.descriptionMarkdown || !data.address) {
                 resolve({
