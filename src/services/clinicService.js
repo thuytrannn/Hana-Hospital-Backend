@@ -4,7 +4,7 @@ const db = require("../models")
 let createNewClinicService = (data) => {
     return new Promise(async (resolve, reject) => {
         try {
-            if (!data.name || !data.imageBase64 || !data.descriptionHTML
+            if (!data.name || !data.descriptionHTML
                 || !data.descriptionMarkdown || !data.address) {
                 resolve({
                     errCode: 1,
