@@ -1,11 +1,11 @@
 require('dotenv').config(); // this is important!
 module.exports = {
     "development": {
-        "username": "postgres",
-        "password": 'Thuytran@13565',
+        "username": process.env.DB_USERNAME,
+        "password": process.env.DB_PASSWORD,
         "database": "postgres",
-        "host": 'db.lzprxtlumettcqjqyapn.supabase.co',
-        "port": '5432',
+        "host": process.env.DB_HOST,
+        "port": process.env.DB_PORT,
         "dialect": "postgres",
         "define": {
             "freezeTableName": true
