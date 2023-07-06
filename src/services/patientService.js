@@ -45,7 +45,6 @@ let postBookAppointmentService = (data) => {
                     errMessage: 'Save infor patient success.',
                 })
                 if (user && user[0]) {
-                    console.log('user========================:', user)
                     await db.Booking.Create({
                         statusId: 'S1',
                         doctorId: data.doctorId,
@@ -54,6 +53,7 @@ let postBookAppointmentService = (data) => {
                         timeType: data.timeType,
                         token: token,
                     })
+                    console.log('user========================:', user)
                 }
             }
         }
