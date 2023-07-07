@@ -12,10 +12,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       doctorId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       patientId: {
-        type: Sequelize.STRING
+        type: Sequelize.INTEGER
       },
       date: {
         type: Sequelize.BIGINT
