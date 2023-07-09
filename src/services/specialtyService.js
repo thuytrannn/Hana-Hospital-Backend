@@ -66,7 +66,9 @@ let saveInforSpecialtyService = (data) => {
 let getAllSpecialties = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let data = await db.Specialty.findAll()
+            let data = await db.Specialty.findAll({
+                order: [['createdAt', 'ASC']],
+            })
             if (data && data.length > 0) {
                 data.map(item => {
                     item.image = new Buffer(item.image, 'base64').toString('binary')

@@ -70,7 +70,9 @@ let saveInforClinicService = (data) => {
 let getAllClinics = () => {
     return new Promise(async (resolve, reject) => {
         try {
-            let data = await db.Clinic.findAll()
+            let data = await db.Clinic.findAll({
+                order: [['createdAt', 'ASC']],
+            })
             if (data && data.length > 0) {
                 data.map(item => {
                     item.image = new Buffer(item.image, 'base64').toString('binary')
